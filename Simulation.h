@@ -1,9 +1,29 @@
+#include "DonutGrid.h"
+#include <exception>
+
 class Simulation{
 public:
   Simulation();
-  void run();
+  void start();
+  void update();
+  bool checkStable();
+  void end();
 
-  Grid grid;
-  Grid gridCopy;
+  bool isNumber(string s);
+  void toLower(string& s);
+
+  Grid* grid;
+  Grid* gridCopy;
+
+  ofstream oFS;
+  string mode;
+  string genType;
+  string filename;
+  int rows;
+  int cols;
+  float density;
+  bool manual;
+  int stable;
+
 
 };

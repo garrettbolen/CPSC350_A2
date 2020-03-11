@@ -14,7 +14,6 @@ Grid::Grid(int r, int c, float density){
     for(int j = 0; j < cols; ++j)
       myGrid[i][j] = '-';
 
-
   for(int i = 0; i < numCells; ++i){
     int num1 = rand() % rows;
     int num2 = rand() % cols;
@@ -72,10 +71,6 @@ void Grid::init(int r, int c){
   }
 }
 
-char Grid::check(int x, int y){
-
-}
-
 void Grid::print(){
   for(int i = 0; i < rows; ++i){
     for(int j = 0; j < cols; ++j){
@@ -88,4 +83,14 @@ void Grid::print(){
 //A simple formula that converts a 2D index to a "flat" index in one dimension
 int Grid::flatIndex(int i, int j){
   return cols * i + j;
+}
+
+void Grid::updateFlatGrid(){
+  int idx = 0;
+  for(int i = 0; i < rows; ++i){
+    for(int j = 0; j < cols; ++j){
+      flatGrid[idx] = myGrid[i][j];
+      idx++;
+    }
+  }
 }

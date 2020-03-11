@@ -11,9 +11,10 @@ public:
   ~Grid();
 
   void init(int r, int c);
-  char check(int r, int c);
   void print();
   int flatIndex(int i, int j);
+  void updateFlatGrid();
+  virtual int countNeighbors(int i, int j){}
 
 
   int rows;
