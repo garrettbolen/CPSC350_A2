@@ -10,6 +10,8 @@ Grid::Grid(int r, int c, float density){
   int numCells = popDensity * size;
   init(rows, cols);
 
+  flatGrid = new char[rows*cols];
+
   for(int i = 0; i < rows; ++i)
     for(int j = 0; j < cols; ++j)
       myGrid[i][j] = '-';
@@ -22,6 +24,7 @@ Grid::Grid(int r, int c, float density){
     else
       myGrid[num1][num2] = 'X';
   }
+  updateFlatGrid();
 }
 
 Grid::Grid(string filename){
@@ -39,18 +42,15 @@ Grid::Grid(string filename){
   init(rows, cols);
 
   flatGrid = new char[rows*cols];
-  int idx = 0;
 
   /*The goal of this nested for loop is to read in chars from the file into both
   the normal and flat grids*/
   for(int i = 0; i < rows; ++i){
     getline(inFS, line);
-    for(int j = 0; j < cols; ++j){
+    for(int j = 0; j < cols; ++j)
       myGrid[i][j] = line[j];
-      flatGrid[idx] = line[j];
-      idx++;
-    }
   }
+  updateFlatGrid();
 }
 
 Grid::~Grid(){
@@ -80,6 +80,15 @@ void Grid::print(){
   }
 }
 
+void Grid::print(ofstream& oFS){
+  for(int i = 0; i < rows; ++i){
+    for(int j = 0; j < cols; ++j){
+      oFS << myGrid[i][j];
+    }
+    oFS << endl;
+  }
+}
+
 //A simple formula that converts a 2D index to a "flat" index in one dimension
 int Grid::flatIndex(int i, int j){
   return cols * i + j;
@@ -93,4 +102,14 @@ void Grid::updateFlatGrid(){
       idx++;
     }
   }
+}
+
+bool Grid::equals(Grid* grid){
+  for(int i = 0; i < rows; ++i){
+    for(int j = 0; j < cols; ++j){
+      if(myGrid[i][j] != grid->myGrid[i][j])
+        return false;
+    }
+  }
+  return true;
 }

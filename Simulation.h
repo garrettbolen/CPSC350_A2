@@ -8,6 +8,7 @@ public:
   void update();
   bool checkStable();
   void end();
+  void pause();
 
   bool isNumber(string s);
   void toLower(string& s);
@@ -23,6 +24,8 @@ public:
   int cols;
   float density;
   bool manual;
+  bool automatic;
+  bool toFile;
   int stable;
 
 

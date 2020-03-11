@@ -5,6 +5,9 @@ Simulation::Simulation(){
 
 void Simulation::start(){
   stable = 0;
+  manual = false;
+  automatic = false;
+  toFile = false;
   string typeInput = "";
   string modeInput = "";
   string fileInput = "";
@@ -92,10 +95,12 @@ void Simulation::start(){
   }
 
   if(mode == "c" && genType == "r"){
-
+    // grid = new ClassicGrid(rows, cols, density);
+    // gridCopy = new ClassicGrid(rows, cols, density);
   }
   else if(mode == "c" && genType == "f"){
-
+    // grid = new ClassicGrid(filename);
+    // gridCopy = new ClassicGrid(filename);
   }
   else if(mode == "d" && genType == "r"){
     grid = new DonutGrid(rows, cols, density);
@@ -106,10 +111,12 @@ void Simulation::start(){
     gridCopy = new DonutGrid(filename);
   }
   else if(mode == "m" && genType == "r"){
-
+    // grid = new MirrorGrid(rows, cols, density);
+    // gridCopy = new MirrorGrid(rows, cols, density);
   }
   else if(mode == "m" && genType == "f"){
-
+    // grid = new MirrorGrid(filename);
+    // gridCopy = new MirrorGrid(filename);
   }
 
   cout << "Would you like the game to output to the console or a file?" << endl;
@@ -124,11 +131,11 @@ void Simulation::start(){
         cin >> gameControl;
         toLower(gameControl);
         if(gameControl == "a"){
-          manual == false;
+          automatic = true;
           break;
         }
         else if(gameControl == "m"){
-          manual == true;
+          manual = true;
           break;
         }
         else
@@ -139,7 +146,8 @@ void Simulation::start(){
     else if(gameOutput == "f"){
       cout << "Enter the name of the file to be outputted to (.txt extension will be automatically applied): " << endl;
       cin >> fileInput;
-      oFS.open(fileInput + ".txt", ios::app);
+      oFS.open(fileInput + ".txt");
+      toFile = true;
       break;
     }
     else
@@ -149,8 +157,6 @@ void Simulation::start(){
 }
 
 void Simulation::update(){
-  cout << endl;
-
   for(int i = 0; i < grid->rows; ++i){
     for(int j = 0; j < grid->cols; ++j){
       if(grid->countNeighbors(i, j) <= 1){
@@ -164,6 +170,7 @@ void Simulation::update(){
       }
     }
   }
+  checkStable();
   for(int i = 0; i < grid->rows; ++i){
     for(int j = 0; j < grid->cols; ++j){
       grid->myGrid[i][j] = gridCopy->myGrid[i][j];
@@ -173,7 +180,13 @@ void Simulation::update(){
 }
 
 bool Simulation::checkStable(){
-
+  if(stable > 5)
+    return true;
+  else{
+    if(grid->equals(gridCopy))
+      stable++;
+    return false;
+  }
 }
 
 void Simulation::end(){
@@ -193,4 +206,14 @@ bool Simulation::isNumber(string s){
 void Simulation::toLower(string& s){
   for(int i = 0; i < s.length(); ++i)
     s[i] = tolower(s[i]);
+}
+
+void Simulation::pause(){
+  for(int i = 0; i < 1000; ++i){
+    for(int j = 0; j < 1000; ++j){
+      for(int k = 0; k < 1000; ++k){
+
+      }
+    }
+  }
 }

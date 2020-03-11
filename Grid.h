@@ -12,8 +12,10 @@ public:
 
   void init(int r, int c);
   void print();
+  void print(ofstream& oFS);
   int flatIndex(int i, int j);
   void updateFlatGrid();
+  bool equals(Grid* grid);
   virtual int countNeighbors(int i, int j){}
 
 
