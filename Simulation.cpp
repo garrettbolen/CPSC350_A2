@@ -1,13 +1,18 @@
 #include "Simulation.h"
 
 Simulation::Simulation(){
-}
-
-void Simulation::start(){
   stable = 0;
   manual = false;
   automatic = false;
   toFile = false;
+}
+Simulation::~Simulation(){
+  delete grid;
+  delete gridCopy;
+  oFS.close();
+}
+
+void Simulation::start(){
   string typeInput = "";
   string modeInput = "";
   string fileInput = "";
@@ -187,12 +192,6 @@ bool Simulation::checkStable(){
       stable++;
     return false;
   }
-}
-
-void Simulation::end(){
-  delete grid;
-  delete gridCopy;
-  oFS.close();
 }
 
 bool Simulation::isNumber(string s){

@@ -10,8 +10,6 @@ Grid::Grid(int r, int c, float density){
   int numCells = popDensity * size;
   init(rows, cols);
 
-  flatGrid = new char[rows*cols];
-
   for(int i = 0; i < rows; ++i)
     for(int j = 0; j < cols; ++j)
       myGrid[i][j] = '-';
@@ -41,8 +39,6 @@ Grid::Grid(string filename){
 
   init(rows, cols);
 
-  flatGrid = new char[rows*cols];
-
   /*The goal of this nested for loop is to read in chars from the file into both
   the normal and flat grids*/
   for(int i = 0; i < rows; ++i){
@@ -64,6 +60,7 @@ Grid::~Grid(){
 void Grid::init(int r, int c){
   rows = r;
   cols = c;
+  flatGrid = new char[rows*cols];
 
   myGrid = new char*[rows];
   for(int i = 0; i < rows; ++i){

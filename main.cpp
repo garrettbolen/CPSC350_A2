@@ -2,7 +2,7 @@
 
 int main(int argc, char const *argv[]) {
 
-  Simulation s = Simulation();
+  Simulation s;
 
   s.start();
   if(s.manual){
@@ -49,7 +49,6 @@ int main(int argc, char const *argv[]) {
       gen++;
     }
   }
-  s.end();
 
   return 0;
 }
