@@ -13,3 +13,5 @@ Resources used to complete this assignment:
 
 https://www.tutorialspoint.com/cplusplus/cpp_polymorphism.htm
 http://www.cplusplus.com/doc/tutorial/polymorphism/
+prgama once: https://stackoverflow.com/questions/32377372/c-include-and-redefinition-of-class-error
+lvalue error: https://stackoverflow.com/questions/39291357/error-lvalue-required-as-left-operand-of-assignment-c
