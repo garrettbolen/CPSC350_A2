@@ -39,35 +39,63 @@ int MirrorGrid::countNeighbors(int r, int c){
         idx = flatIndex(0, (c + j));
         if(flatGrid[idx] == 'X'){
           sum++;
-
+          // check corners to mirror and add to sum
+          if((r+i) == 0 && (c+j) == (cols - 1) || (r+i) == 0 && (c+j) == 0){
+            idx = flatIndex(0, (cols - 1));
+            idx = flatIndex(0,0);
+            if(flatGrid[idx] == 'X'){
+              sum++;
+            }
+          }
         }
       } // bottom edge, not including corners
       else if((r + i) < rows && (c + j) >= 0 && (c + j) <= (cols)){
         idx = flatIndex((r + i), (c + j));
         if(flatGrid[idx] == 'X'){
           sum++;
-
+          // check corners to mirror and add to sum
+          if((r+i) == (rows - 1) && (c+j) == (cols - 1) || (r+i) == (rows - 1) && (c+j) == 0){
+            idx = flatIndex((rows - 1), (cols - 1));
+            idx = flatIndex((rows-1),0);
+            if(flatGrid[idx] == 'X'){
+              sum++;
+            }
+          }
         }
       } // left edge, not including corners
       else if((c + j) <= 0 && (r + i) >= 0 && (r + i) < (rows)){
         idx = flatIndex((r + i), 0);
         if(flatGrid[idx] == 'X'){
           sum++;
-
+          // check corners to mirror and add to sum
+          if((r+i) == 0 && (c+j) == (cols - 1) || (r+i) == 0 && (c+j) == 0){
+            idx = flatIndex(0, (cols - 1));
+            idx = flatIndex(0,0);
+            if(flatGrid[idx] == 'X'){
+              sum++;
+            }
+          }
         }
       } // right edge, not including corners
       else if((c + j) <= (cols) && (r + i) >= 0 && ((r + i) < (rows - 1))){
         idx = flatIndex((r + i), (c + j));
         if(flatGrid[idx] == 'X'){
           sum++;
-
+          // check corners to mirror and add to sum
+          if((r+i) == (rows - 1) && (c+j) == (cols - 1) || (r+i) == (rows - 1) && (c+j) == 0){
+            idx = flatIndex((rows - 1), (cols - 1));
+            idx = flatIndex((rows-1),0);
+            if(flatGrid[idx] == 'X'){
+              sum++;
+            }
+          }
         }
       } // out of bounds
       else if((r + i) < 0 || (r + i) >= rows || (c + j) < 0 || (c + j) >= cols){
         continue;
       }
 
-      //standard 
+      //standard
       else{
         idx = flatIndex(r + i, c + j);
         if(flatGrid[idx] == 'X'){
