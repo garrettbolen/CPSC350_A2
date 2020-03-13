@@ -1,6 +1,6 @@
 #include "DonutGrid.h"
-//#include "ClassicGrid.h"
-//#include "MirrorGrid.h"
+#include "ClassicGrid.h"
+#include "MirrorGrid.h"
 #include <exception>
 
 class Simulation{

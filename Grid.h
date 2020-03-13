@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+//This statement ensures Grid.h is only included once when the program runs
+#pragma once
 
 using namespace std;
 
@@ -16,6 +18,7 @@ public:
   int flatIndex(int i, int j);
   void updateFlatGrid();
   bool equals(Grid* grid);
+  //This virtual method will be inherited and implemented differently for each mode
   virtual int countNeighbors(int i, int j){}
 
 
